@@ -19,7 +19,7 @@ jobs:
       run: |
         # Configurar Surge.sh
         npm install --global surge
-       echo $SURGE_TOKEN | surge login --token
+        echo $SURGE_TOKEN | surge login --token
 
         # Desplegar en Surge.sh
         surge --project ./ --domain mi-primer-examen-github-action.surge.sh # Reemplazar <SURGE_SUBDOMAIN> con un subdominio único para cada estudiante
