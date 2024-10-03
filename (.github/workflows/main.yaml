@@ -1,0 +1,25 @@
+name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and Deploy
+      env:
+        SURGE_TOKEN: ${{ secrets.SURGEKEY }}
+      run: |
+        # Configurar Surge.sh
+        npm install --global surge
+        echo $SURGE_TOKEN | surge login --token
+
+        # Desplegar en Surge.sh
+        surge --project ./ --domain mi-primer-examen-github-action.surge.sh # Reemplazar <SURGE_SUBDOMAIN> con un subdominio único para cada estudiante
